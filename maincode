@@ -3,7 +3,23 @@ Program projeto_final;
 var path: integer;
 		input: string;
 		cinput: char;
-		out: boolean;						
+		out: boolean;
+		
+								
+procedure wall(xres,yres,x,y:integer);
+
+var i,n,t: integer;
+
+Begin	
+	for i := 1 to xres do
+	begin
+		for n := 1 to yres do
+		begin
+			gotoxy(x+i,y+n);
+			write(#178);
+		end;
+	end;			
+End;
 
 //Menu Procedure
 
@@ -28,11 +44,11 @@ Begin
 		
 		// Display
 		
-		writeln;
+		gotoxy(10,5);
 		writeln(' ',select[1],' Iniciar');
-		writeln;
+		gotoxy(10,7);
 		writeln(' ',select[2],' Score');
-		writeln;
+		gotoxy(10,9);
 		writeln(' ',select[3],' Exit');
 		
 		cinput := readkey;
@@ -65,32 +81,6 @@ Begin
 
 End;
 
-procedure wall;
-
-var i,n,t: integer;
-
-const
-
-	// Tamanho da Parede
-	 
-	xres = 10;
-	yres = 5; 							
-	
-	// Posição da Parede
-	
-	x = 10;
-	y = 5;
-	
-Begin	
-	for i := 1 to xres do
-	begin
-		for n := 1 to yres do
-		begin
-			gotoxy(x+i,y+n);
-			write(#178);
-		end;
-	end;			
-End;
 
 //Main Program
 
@@ -99,7 +89,10 @@ Begin
 		menu;	
 		while(path = 1) do
 		begin
+			wall;
 			path := 0;
+			readln;
+			clrscr;
   	end;
    while(path = 2) do
    	begin
