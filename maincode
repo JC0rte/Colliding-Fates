@@ -1,0 +1,110 @@
+Program projeto_final;
+
+var path: integer;
+		input: string;
+		cinput: char;
+		out: boolean;						
+
+//Menu Procedure
+
+procedure menu;
+
+var select: array [1..3] of string; 
+		outm: boolean;
+		i: integer;
+
+Begin
+
+	//Atribuição
+	
+	out := false;
+	path := 1;
+	select[1] := #62;
+		
+	//Menu	
+																													
+	repeat	
+		textcolor(cyan);
+		
+		// Display
+		
+		writeln;
+		writeln(' ',select[1],' Iniciar');
+		writeln;
+		writeln(' ',select[2],' Score');
+		writeln;
+		writeln(' ',select[3],' Exit');
+		
+		cinput := readkey;
+		
+		//Lógica
+		
+		case (cinput) of              
+			'w': path := path-1;
+			's': path := path+1;
+			#10: outm := true;
+		else
+			begin 
+			outm := true; 
+			end;	
+		end;
+		
+		case (path) of            		
+			0: path := 3;
+			4: path := 1;
+		end;
+		
+		for i := 1 to 3 do
+			begin                                  
+				select[i] := #32
+			end;
+		
+		select[path] := #62;
+		clrscr;	                  
+  until(outm = true);	
+
+End;
+
+procedure wall;
+
+var i,n,t: integer;
+
+const
+
+	// Tamanho da Parede
+	 
+	xres = 10;
+	yres = 5; 							
+	
+	// Posição da Parede
+	
+	x = 10;
+	y = 5;
+	
+Begin	
+	for i := 1 to xres do
+	begin
+		for n := 1 to yres do
+		begin
+			gotoxy(x+i,y+n);
+			write(#178);
+		end;
+	end;			
+End;
+
+//Main Program
+
+Begin
+	repeat
+		menu;	
+		while(path = 1) do
+		begin
+			path := 0;
+  	end;
+   while(path = 2) do
+   	begin
+   		path := 0;
+   	end;
+   	
+  until(path = 3);
+End.
