@@ -1,0 +1,152 @@
+Program projeto_final;
+
+var path: integer;
+										
+procedure wall(xres,yres,x,y:integer);
+
+var i,n,t: integer;
+
+Begin	
+	for i := 1 to xres do
+	begin
+		for n := 1 to yres do
+		begin
+			gotoxy(x+i,y+n);
+			write(#178);
+		end;
+	end;			
+End;
+
+//Menu Procedure
+
+procedure menu;
+
+var select: array [1..3] of string; 
+		i: integer;
+		key: char;
+		out: boolean;
+
+Begin
+
+	//Atribuição
+	
+	path := 1;
+	select[path] := #62;
+	out := false;
+		
+	//Menu	
+																													
+	while(out = false) do
+	begin
+		
+		textcolor(cyan);
+		
+		// Display
+		
+		gotoxy(10,5);
+		writeln(' ',select[1],' Iniciar');
+		gotoxy(10,7);
+		writeln(' ',select[2],' Score');
+		gotoxy(10,9);
+		writeln(' ',select[3],' Exit');
+		
+		key := readkey;
+		
+		//Lógica
+		
+		case (key) of              
+			'w': path := path-1;
+			's': path := path+1;
+			#13: out := true;	
+		end;
+		
+		case (path) of            		
+			0: path := 3;
+			4: path := 1;
+		end;
+		
+		//Graph Seleção
+		
+		for i := 1 to 3 do
+			begin                                  
+				select[i] := #32
+			end;
+		select[path] := #62;
+		
+		clrscr;	                  
+	end;
+	
+End;
+
+//Player Procedure
+
+procedure player;
+
+var key:char;
+
+Begin
+	
+
+End;
+
+//Game Procedure
+
+procedure game;
+
+var key: char;
+
+Begin
+
+	//Frame
+	
+	wall(50,1,10,5);
+	wall(2,50,10,5);
+	wall(50,1,10,55);
+	wall(2,50,58,5);
+	
+	//Platforms
+	
+	wall(35,1,10,30);
+	wall(15,1,38,40);
+	wall(35,1,10,48);
+
+	//Sair
+
+	key := readkey;
+	
+	case (key) of
+		#27: path := 0;
+	else
+		path := 1;	
+	end;	
+	
+End;	
+
+
+//Main Program
+
+Begin
+
+//Atribuições Iniciais
+
+path := 0;
+
+//Main Loop
+	
+	repeat
+		while(path = 0) do
+		begin
+			menu;
+		end;	
+		while(path = 1) do
+		begin
+			game;
+			clrscr;
+  	end;
+    while(path = 2) do
+   	begin
+   		path := 0;
+   	end;
+   	
+  until(path = 3);
+End.
