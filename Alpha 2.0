@@ -77,8 +77,7 @@ Begin
 				select[i] := #32
 			end;
 		select[path] := #62;
-		
-		clrscr;	                  
+		                 
 	end;
 	
 End;
