@@ -26,7 +26,7 @@ var
 		objecttexture: array [1..100] of char;
 		teleportpos: array [1..100,1..6] of integer;
 	
-//Procedure Player Pick
+//Procedure Player Pick.
 
 procedure playerStats;
 
